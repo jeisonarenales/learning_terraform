@@ -1,4 +1,4 @@
 variable "terraform_bucket" {
-  type = string
+  type        = string
   description = "S3 bucket to store terraform state file"
 }
