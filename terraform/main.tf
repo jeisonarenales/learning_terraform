@@ -6,7 +6,7 @@ data "aws_s3_bucket" "terraform_bucket" {
 
 # Upload an object to the bucket
 resource "aws_s3_object" "test_file" {
-  bucket = aws_s3_bucket.example.id
+  bucket = data.aws_s3_bucket.terraform_bucket.id
   key    = "index.html"
   content = "Hello world"
   
@@ -15,5 +15,5 @@ resource "aws_s3_object" "test_file" {
 
 output "object_url" {
   description = "URL of the uploaded object"
-  value       = "https://${data.aws_s3_bucket.terraform_bucket}/${aws_s3_object.test_file.key}"
+  value       = "https://${data.aws_s3_bucket.terraform_bucket.bucket_domain_name}/${aws_s3_object.test_file.key}"
 }
